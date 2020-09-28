@@ -26,7 +26,7 @@
     <h2>Toda la actualidad en eBook</h2>
     <p>Libros casi nuevos a un precio casi imposible.</p>
 
-    <div class="ebook">
+    <!-- <div class="ebook">
       <a href="https://www.filmaffinity.com/es/film336427.html"><img src="../img/cell.jpeg" alt="ebook 1">
     <div>A través de los teléfonos móviles se envía un mensaje que convierte a todos en esclavos asesinos...</div>
     </div></a>
@@ -41,7 +41,29 @@
     <div class="ebook">
       <a href="https://www.filmaffinity.com/es/film598422.html"><img src="../img/elresplandor.jpeg" alt="ebook 3">
     <div>Esa es la palabra que Danny había visto en el espejo. Y, aunque no sabía leer, entendió que era un mensaje de horror...</div>
-    </div></a>
+    </div></a> -->
+
+  <?php
+    //Conexion a BDE
+    include "../services/connection.php";
+    //Seleccion y muestra de base de datos
+    $result = mysqli_query($conn, "SELECT Books.Description, Books.img, Books.Title FROM Books WHERE eBook != '0'");
+
+    if(!empty($result) && mysqli_num_rows($result) > 0) {
+    //Datos de salirda de cada fila (fila = row)
+      while ($row = mysqli_fetch_array($result)) {
+        echo "<div class='ebook'>";
+          //Añadimos la imagen la pagina con la etiqueta img de HTML
+          echo "<img src=../img/".$row['img']." alt=".$row['Title']."'>";
+          //Añadimos el titulo de la pagina con la etiqueta H2
+          echo "<div class='desc'>".$row['Title']."</div>";
+          echo "</div>";
+        }
+      } else{
+        echo "0 resultados";
+      }
+
+   ?>
  </div>
   
   <div class="column right">
