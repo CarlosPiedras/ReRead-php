@@ -20,7 +20,7 @@
  <div class="column left">
   <div class="topnav">
     <a href="../index.php">Re-Read</a>
-    <a href="libros.html">Libros</a>
+    <a href="libros.php">Libros</a>
     <a href="eBooks.php">eBooks</a>
   </div>
     <h2>Todos los libros tienen el mismo precio</h2>
@@ -42,10 +42,26 @@
   
   <div class="column right">
     <h2>Top ventas</h2>
-    <p>Cien años de soledad.</p>
+    <!--<p>Cien años de soledad.</p>
     <p>Crónica de una muerte anunciada.</p>
     <p>El otoño del patriarca.</p>
-    <p>El general en su laberinto.</p>
+    <p>El general en su laberinto.</p> -->
+
+    <?php
+    //Conexion a BDE
+    include "../services/connection.php";
+    //Seleccion y muestra de base de datos
+    $result = mysqli_query($conn, "SELECT Books.Title FROM Books WHERE Top = '1'");
+
+    if(!empty($result) && mysqli_num_rows($result) > 0) {
+      //Datos de salirda de cada fila (fila = row)
+        while ($row = mysqli_fetch_array($result)) {
+          echo "<p>".$row['Title']."</p>";
+          }
+        } else{
+          echo "0 resultados";
+        }
+    ?>
   </div>
 </div>
   
