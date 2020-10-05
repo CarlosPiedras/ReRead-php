@@ -19,6 +19,7 @@
 </div>
 
 <div class="row">
+
   <div class="column middle">
     <div class="topnav">
       <a href="../index.php">Re-Read</a>
@@ -81,6 +82,7 @@
           echo "</div>";
           if ($i%3=='0') {
             echo "<div style='clear:both;'></div>";
+
           }
         }
       } else {
@@ -92,6 +94,7 @@
   </div>
   <div class="column side">
     <h2>Top ventas</h2>
+
     <?php
       // 1. Conexión con la base de datos	
       //include '../services/connection.php';
